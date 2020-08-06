@@ -12,7 +12,7 @@ class LaunchAPI extends RESTDataSource {
       cursor: `${launch.launch_date_unit}`,
       site: launch.launch_site && launch.launch_site.name,
       mission: {
-        name: launch.mission.name,
+        name: launch.mission_name,
         missionPatchSmall: launch.links.mission_patch_small,
         missionPatchLarge: launch.links.mission_patch,
       },
@@ -31,7 +31,7 @@ class LaunchAPI extends RESTDataSource {
 
   async getLaunchById({ launchId }) {
     const response = await this.get('launches', {
-      flight_number: launch_id
+      flight_number: launchId
     });
 
     return this.launchReducer(response[0]);
